@@ -1,0 +1,20 @@
+<div style="width: 98%; margin-left: 1%; margin-top: 25px;">
+
+    <div *ngIf = "!new_task">
+        <span nz-icon nzType="plus" style="color: blue;" nzTheme="outline"></span>
+        <input type="text" [(ngModel)]="new_task" nzBorderless nz-input placeholder="Tap to add new task" style="height: 40px;"/>
+    </div> 
+
+    <nz-input-group *ngIf = "new_task" [nzSuffix]="suffixTemplateInfo" [nzPrefix]="prefixTemplateUser" nzBorderless>
+        <input type="text" [(ngModel)]="new_task" nz-input placeholder="Tap to add new task" style="height: 40px;"/>
+    </nz-input-group>
+    <ng-template #prefixTemplateUser>
+        <span nz-icon nzType="plus" style="color: blue;" nzTheme="outline"></span>
+    </ng-template>
+    <ng-template #suffixTemplateInfo>
+        <nz-avatar nzIcon="user" nzSize="small" style="background-color:#87d068; margin-bottom: 10px;"></nz-avatar>
+    </ng-template>
+</div>
+<div *ngIf = "new_task" style="width: 98%; margin-left: 1%; background-color: white;  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);">
+    <button nz-button nzType="default" style="margin: 5px; background-color: lightgray;"> <span nz-icon nzType="arrows-alt" nzTheme="outline"></span> Open</button>
+</div>
