@@ -1,20 +1,43 @@
 <div style="width: 98%; margin-left: 1%; margin-top: 25px;">
 
-    <div *ngIf = "!new_task">
-        <span nz-icon nzType="plus" style="color: blue;" nzTheme="outline"></span>
-        <input type="text" [(ngModel)]="new_task" nzBorderless nz-input placeholder="Tap to add new task" style="height: 40px;"/>
+    <div nz-row *ngIf = "!new_task">
+        <div>
+            <span class = "icon" nz-icon nzType="plus-square" style="color: rgb(55, 125, 247); margin-top: 5px;" nzTheme="outline"></span>
+        </div>
+        <div>
+            <input type="text" [(ngModel)]="new_task" nzBorderless nz-input placeholder="Tap to add new task"/>
+        </div>
     </div> 
 
     <nz-input-group *ngIf = "new_task" [nzSuffix]="suffixTemplateInfo" [nzPrefix]="prefixTemplateUser" nzBorderless>
         <input type="text" [(ngModel)]="new_task" nz-input placeholder="Tap to add new task" style="height: 40px;"/>
     </nz-input-group>
     <ng-template #prefixTemplateUser>
-        <span nz-icon nzType="plus" style="color: blue;" nzTheme="outline"></span>
+        <span class = "icon" nz-icon nzType="plus-square" style="color: rgb(55, 125, 247);" nzTheme="outline"></span>
     </ng-template>
     <ng-template #suffixTemplateInfo>
         <nz-avatar nzIcon="user" nzSize="small" style="background-color:#87d068; margin-bottom: 10px;"></nz-avatar>
     </ng-template>
 </div>
-<div *ngIf = "new_task" style="width: 98%; margin-left: 1%; background-color: white;  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);">
-    <button nz-button nzType="default" style="margin: 5px; background-color: lightgray;"> <span nz-icon nzType="arrows-alt" nzTheme="outline"></span> Open</button>
+<div nz-row *ngIf = "new_task" style="width: 98%; margin-left: 1%; background-color: white;  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);">
+    <div nz-col nzSpan="2">
+        <button nz-button nzType="default" style="margin: 5px; background-color: lightgrey;"> <span class = "icon" nz-icon nzType="arrows-alt" nzTheme="outline"></span> Open</button>
+    </div>
+
+    <div nz-col nzSpan="22">
+        <div nz-row>
+            <div>
+                <button nz-button nzType="default" style="margin: 5px;"> <span class = "icon" nz-icon nzType="calendar" nzTheme="outline"></span> Today</button>
+            </div>
+            <div>
+                <button nz-button nzType="default" style="margin: 5px;"> <span class = "icon" nz-icon nzType="unlock" nzTheme="outline"></span> Public</button>
+            </div>
+            <div>
+                <button nz-button nzType="default" style="margin: 5px;"> <span class = "icon" nz-icon nzType="highlight" nzTheme="outline"></span> Highlight</button>
+            </div>
+        
+            <div>
+                <button nz-button nzType="default" style="margin: 5px; "> <span class = "icon" nz-icon nzType="question" nzTheme="outline"></span> Estimation</button>
+            </div>
+        </div>
 </div>
