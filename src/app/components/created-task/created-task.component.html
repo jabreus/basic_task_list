@@ -1,1 +1,22 @@
-<p>created-task works!</p>
+<div nz-row style="margin-left: 16px; margin-top: 20px;">
+    <label nz-checkbox style="margin-right: 15px;"></label>
+    <label *ngFor = "let word of text">
+        <ng-container *ngIf="firstLetter(word) == '@'">
+            <nz-tag class="tag" [nzColor]="'green'"><nz-avatar nzIcon="user" [nzSize]="17" style="background-color:#87d068; margin-bottom: 2px;"></nz-avatar> {{ removeFirstCharacter(word)  }}</nz-tag>
+         </ng-container>
+         <ng-container *ngIf="firstLetter(word) == '#'">
+            <nz-tag class="tag" [nzColor]="'purple'">{{ word }}</nz-tag>
+         </ng-container>
+         <ng-container *ngIf="isAnEmail(word)">
+            <nz-tag class="tag" [nzColor]="'orange'"><span nz-icon nzType="mail" nzTheme="outline"></span> Mail</nz-tag>
+         </ng-container>
+         <ng-container *ngIf="isAnURL(word)">
+            <nz-tag class="tag" [nzColor]="'blue'"><span nz-icon nzType="link" nzTheme="outline"></span> Link</nz-tag>
+         </ng-container>
+
+
+         <ng-container *ngIf="firstLetter(word) != '#' && firstLetter(word) != '@' && !isAnEmail(word) && !isAnURL(word)">
+            {{ word }}
+         </ng-container>
+    </label>
+</div>
