@@ -5,39 +5,51 @@
             <span class = "icon" nz-icon nzType="plus-square" style="color: rgb(55, 125, 247); margin-top: 5px;" nzTheme="outline"></span>
         </div>
         <div>
-            <input type="text" [(ngModel)]="new_task" nzBorderless nz-input placeholder="Tap to add new task"/>
+            <input type="text" (change) = "onInputChange()" [(ngModel)]="new_task" nzBorderless nz-input placeholder="Tap to add new task"/>
         </div>
     </div> 
 
-    <nz-input-group *ngIf = "new_task" [nzSuffix]="suffixTemplateInfo" [nzPrefix]="prefixTemplateUser" nzBorderless>
-        <input type="text" [(ngModel)]="new_task" nz-input placeholder="Tap to add new task" style="height: 40px;"/>
+    <nz-input-group [hidden] = "new_task==''" [nzSuffix]="suffixTemplateInfo" [nzPrefix]="prefixTemplateUser" nzBorderless>
+        <input type="text" #taskInput [(ngModel)]="new_task" nz-input placeholder="Tap to add new task" style="height: 40px;"/>
     </nz-input-group>
     <ng-template #prefixTemplateUser>
-        <span class = "icon" nz-icon nzType="plus-square" style="color: rgb(55, 125, 247);" nzTheme="outline"></span>
+        <span class = "icon" nz-icon nzType="plus-square" style="color: rgb(55, 125, 247); margin-right: 8px;" nzTheme="outline"></span>
     </ng-template>
     <ng-template #suffixTemplateInfo>
         <nz-avatar nzIcon="user" nzSize="small" style="background-color:#87d068; margin-bottom: 10px;"></nz-avatar>
     </ng-template>
 </div>
-<div nz-row *ngIf = "new_task" style="width: 98%; margin-left: 1%; background-color: white;  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);">
+<div nz-row [hidden] = "new_task==''" style="width: 98%; margin-left: 1%; background-color: white;  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);">
     <div nz-col nzSpan="2">
-        <button nz-button nzType="default" style="margin: 5px; background-color: lightgrey;"> <span class = "icon" nz-icon nzType="arrows-alt" nzTheme="outline"></span> Open</button>
+        <button nz-button nzType="default" style="background-color: lightgrey;"> <span class = "icon" nz-icon nzType="arrows-alt" nzTheme="outline"></span> Open</button>
     </div>
 
-    <div nz-col nzSpan="22">
+    <div nz-col nzSpan="16">
         <div nz-row>
             <div>
-                <button nz-button nzType="default" style="margin: 5px;"> <span class = "icon" nz-icon nzType="calendar" nzTheme="outline"></span> Today</button>
+                <button nz-button nzType="default"> <span class = "icon" nz-icon nzType="calendar" nzTheme="outline"></span> Today</button>
             </div>
             <div>
-                <button nz-button nzType="default" style="margin: 5px;"> <span class = "icon" nz-icon nzType="unlock" nzTheme="outline"></span> Public</button>
+                <button nz-button nzType="default"> <span class = "icon" nz-icon nzType="unlock" nzTheme="outline"></span> Public</button>
             </div>
             <div>
-                <button nz-button nzType="default" style="margin: 5px;"> <span class = "icon" nz-icon nzType="highlight" nzTheme="outline"></span> Highlight</button>
+                <button nz-button nzType="default"> <span class = "icon" nz-icon nzType="highlight" nzTheme="outline"></span> Highlight</button>
             </div>
         
             <div>
-                <button nz-button nzType="default" style="margin: 5px; "> <span class = "icon" nz-icon nzType="question" nzTheme="outline"></span> Estimation</button>
+                <button nz-button nzType="default"> <span class = "icon" nz-icon nzType="question" nzTheme="outline"></span> Estimation</button>
             </div>
         </div>
+    </div>
+
+    <div nz-col nzSpan="6">
+        <div nz-row style="float: right;">
+            <div>
+                <button nz-button nzType="default" style="margin: 5px; background-color: lightgrey;"> Cancel</button>
+            </div>
+            <div>
+                <button nz-button nzType="primary" style="margin: 5px;"> Add</button>
+            </div>
+        </div>
+    </div>
 </div>
