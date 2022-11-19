@@ -12,9 +12,22 @@ export class AddTaskComponent{
 
   onInputChange(){
     setTimeout(()=>{
-      this.taskInput.nativeElement.focus()
+      this.taskInput.nativeElement.focus();
     })
   }
+
+  cancel(){
+    this.new_task = ""
+  }
+
+  addTask(){
+    
+  }
+
+  save(event: any){
+    console.log("You entered: ", event.target.value);
+  }
 }
+
 
 

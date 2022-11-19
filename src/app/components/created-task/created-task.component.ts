@@ -5,8 +5,17 @@ import { Component } from '@angular/core';
   templateUrl: './created-task.component.html',
   styleUrls: ['./created-task.component.css']
 })
-export class CreatedTaskComponent {
-  text = ["#important", "Write to", "some@gmail.com", "and tell","@natasha","about","https://staging.alldone.app"]
+export class CreatedTaskComponent{
+  tasks = ["#important Write to some@gmail.com and tell her @natash about https://staging.alldone.app", 
+            "#important Write to some@gmail.com and tell her @bryan about https://staging.alldone.app",
+            "#not-important Write to someother@gmail.com and tell her @will about https://sssss.alldone.app"
+          ]
+  text: string [] = [];
+
+
+  convertTextIntoWords(task: string){
+    return task.split(" ");
+  }
 
   firstLetter(word: string){
     return word.charAt(0);
@@ -28,5 +37,7 @@ export class CreatedTaskComponent {
       '(\\?[;&a-z\\d%_.~+=-]*)?'+
       '(\\#[-a-z\\d_]*)?$','i');
     return pattern.test(word);
+  }
+  ngOnInit(){
   }
 }
