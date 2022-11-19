@@ -1,1 +1,23 @@
-<p>login works!</p>
+<div nz-row style="margin-top: 180px;">
+    <div nz-col nzSpan="12" nzOffset="9">
+        <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input your email!">
+                <nz-input-group nzPrefixIcon="mail">
+                  <input type="email" nz-input formControlName="email" placeholder="E-mail" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Please input your Password!">
+                <nz-input-group nzPrefixIcon="lock">
+                  <input type="password" nz-input formControlName="password" placeholder="Password" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+            <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
+            Or
+            <a routerLink = "/registration">register now!</a>
+          </form>
+    </div>
+</div> 
