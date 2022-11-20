@@ -7,25 +7,28 @@ import {Component, ElementRef, ViewChild} from '@angular/core';
 })
 export class AddTaskComponent{
   new_task = "";
+  flag = false;
   @ViewChild('taskInput')
   taskInput!: ElementRef;
 
-  onInputChange(){
-    setTimeout(()=>{
-      this.taskInput.nativeElement.focus();
-    })
-  }
-
   cancel(){
     this.new_task = ""
+    this.flag = false;
   }
 
   addTask(){
-    
+    if(!this.new_task){
+      this.flag = false;
+    }
   }
-
-  save(event: any){
-    console.log("You entered: ", event.target.value);
+  
+  ngOnInit(){
+    document.getElementById('first_task_input')!.onclick = () =>{
+      this.flag = true;
+      setTimeout(()=>{
+        document.getElementById('task_input')!.focus();
+      })
+    }
   }
 }
 

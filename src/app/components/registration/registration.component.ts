@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UntypedFormGroup, UntypedFormControl, UntypedFormBuilder, Validators } from '@angular/forms';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -12,6 +13,9 @@ export class RegistrationComponent {
   submitForm(): void {
     if (this.validateForm.valid) {
       console.log('submit', this.validateForm.value);
+
+      //some logic
+      this.router.navigate(['/'])  
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {
@@ -36,7 +40,7 @@ export class RegistrationComponent {
     return {};
   };
 
-  constructor(private fb: UntypedFormBuilder) {}
+  constructor(private fb: UntypedFormBuilder, private router: Router) {}
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({

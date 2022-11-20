@@ -5,3 +5,7 @@
 button{
     margin: 5px;
 }
+button:hover{
+    color: black;
+    border-color: black;
+}

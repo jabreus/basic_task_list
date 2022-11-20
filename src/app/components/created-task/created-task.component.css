@@ -1,6 +1,7 @@
 .tag{
     border-radius: 10px;
     margin-right: -1px;
+    cursor: pointer;
 }
 
 .word{
