@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UntypedFormGroup, UntypedFormControl, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Route, Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-registration',
@@ -13,9 +14,14 @@ export class RegistrationComponent {
   submitForm(): void {
     if (this.validateForm.valid) {
       console.log('submit', this.validateForm.value);
-
-      //some logic
-      this.router.navigate(['/'])  
+      this.userService.signupUser(this.validateForm.value).subscribe((res:any)=>{
+        if(res == "Registered"){
+          console.log('user registered');
+          this.router.navigate(['/'])  
+        }else{
+          alert("Registration Error");
+        }
+      });
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {
@@ -40,11 +46,11 @@ export class RegistrationComponent {
     return {};
   };
 
-  constructor(private fb: UntypedFormBuilder, private router: Router) {}
+  constructor(private fb: UntypedFormBuilder, private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      email: [null, [Validators.email, Validators.required]],
+      username: [null, [Validators.required]],
       password: [null, [Validators.required]],
       checkPassword: [null, [Validators.required, this.confirmationValidator]],
     });

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
+import { TaskService } from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-created-task',
@@ -6,12 +8,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./created-task.component.css']
 })
 export class CreatedTaskComponent{
-  tasks = ["#important Write to some@gmail.com and tell her @natash about https://staging.alldone.app", 
-            "#important Write to some@gmail.com and tell her @bryan about https://staging.alldone.app",
-            "#not-important Write to someother@gmail.com and tell her @will about https://sssss.alldone.app"
-          ]
+  // tasks = ["#important Write to some@gmail.com and tell her @natash about https://staging.alldone.app", 
+  //           "#important Write to some@gmail.com and tell her @bryan about https://staging.alldone.app",
+  //           "#not-important Write to someother@gmail.com and tell her @will about https://sssss.alldone.app"
+  //         ]
+  tasks = [];
   text: string [] = [];
-
+  accessToken = this.cookieService.get("accessToken");
 
   convertTextIntoWords(task: string){
     return task.split(" ");
@@ -39,5 +42,9 @@ export class CreatedTaskComponent{
     return pattern.test(word);
   }
   ngOnInit(){
+    this.taskService.getTaskList(this.accessToken).subscribe((res:any)=>{
+      this.tasks = res.content;
+    })
   }
+  constructor(private cookieService: CookieService, private taskService: TaskService){}
 }

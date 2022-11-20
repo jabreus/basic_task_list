@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,10 @@ export class LoginComponent {
   submitForm(): void {
     if (this.validateForm.valid) {
       console.log('submit', this.validateForm.value);
-
+      this.userService.signinUser(this.validateForm.value).subscribe((res:any)=>{
+        this.cookieService.set("accessToken",res);
+        console.log("response from server", res);
+      });
       //some logic
       this.router.navigate(['/tasks'])
     } else {
@@ -26,11 +31,11 @@ export class LoginComponent {
     }
   }
 
-  constructor(private fb: UntypedFormBuilder, private router: Router) {}
+  constructor(private fb: UntypedFormBuilder, private router: Router, private userService: UserService, private cookieService: CookieService) {}
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      email: [null,[Validators.required, Validators.email]],
+      username: [null,[Validators.required]],
       password: [null, [Validators.required]],
     });
   }
