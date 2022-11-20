@@ -2,16 +2,16 @@
     <label nz-checkbox style="margin-right: 5px;"></label>
     <label class="word" *ngFor = "let word of convertTextIntoWords(task)">
         <ng-container *ngIf="firstLetter(word) == '@'">
-            <nz-tag class="tag" [nzColor]="'green'"><nz-avatar nzIcon="user" [nzSize]="17" style="background-color:#87d068; margin-bottom: 2px;"></nz-avatar> {{ removeFirstCharacter(word)  }}</nz-tag>
+            <nz-tag class="tag" [nzColor]="'rgb(188,238,218)'" style="color: rgb(85,174,132);"><nz-avatar nzIcon="user" [nzSize]="17" style="background-color:#87d068; margin-bottom: 2px;"></nz-avatar> {{ removeFirstCharacter(word)  }}</nz-tag>
          </ng-container>
          <ng-container *ngIf="firstLetter(word) == '#'">
-            <nz-tag class="tag" [nzColor]="'purple'">{{ word }}</nz-tag>
+            <nz-tag class="tag" [nzColor]="'rgb(216,200,251)'" style="color: rgb(105,50,222);">{{ word }}</nz-tag>
          </ng-container>
          <ng-container *ngIf="isAnEmail(word)">
-            <nz-tag class="tag" [nzColor]="'orange'"><span nz-icon nzType="mail" nzTheme="outline"></span> Mail</nz-tag>
+            <nz-tag class="tag" [nzColor]="'rgb(252,231,203)'" style="color: rgb(231, 148, 56);"><span nz-icon nzType="mail" nzTheme="outline"></span> Mail</nz-tag>
          </ng-container>
          <ng-container *ngIf="isAnURL(word)">
-            <nz-tag class="tag" [nzColor]="'blue'"><span nz-icon nzType="link" nzTheme="outline"></span> Link</nz-tag>
+            <nz-tag class="tag" [nzColor]="'rgb(218,234,253)'" style="color: rgb(55,125,247);"><span nz-icon nzType="link" nzTheme="outline"></span> Link</nz-tag>
          </ng-container>
 
 
