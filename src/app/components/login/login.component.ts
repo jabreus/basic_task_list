@@ -14,13 +14,17 @@ export class LoginComponent {
 
   submitForm(): void {
     if (this.validateForm.valid) {
-      console.log('submit', this.validateForm.value);
+      console.log('submit', this.validateForm);
       this.userService.signinUser(this.validateForm.value).subscribe((res:any)=>{
-        this.cookieService.set("accessToken",res);
-        console.log("response from server", res);
+        if(res==='0'){
+          window.alert("No such user");
+        }else{
+          this.userService.setToken(res.accessToken);
+          console.log("response from server", res);
+          this.router.navigate(['/tasks']);
+        }
       });
-      //some logic
-      this.router.navigate(['/tasks'])
+
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {

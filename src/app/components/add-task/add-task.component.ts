@@ -24,7 +24,7 @@ export class AddTaskComponent{
       this.flag = false;
     }else{
       const content = new CreateTaskModel(this.new_task);
-      this.taskService.addTask(content, this.accessToken).subscribe((res)=>{
+      this.taskService.addTask(content).subscribe((res)=>{
         console.log("response",res);
       });
     }
