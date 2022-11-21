@@ -1,6 +1,8 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Component, Input, OnChanges } from '@angular/core';
 import { CreatedTaskResponseModel } from 'src/app/models/created-task-response-model';
 import { TaskService } from 'src/app/services/task.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-created-task',
@@ -10,6 +12,7 @@ import { TaskService } from 'src/app/services/task.service';
 export class CreatedTaskComponent implements OnChanges{
   @Input() tasks: CreatedTaskResponseModel[] = [];
   text: string [] = [];
+  headers: any;
 
   convertTextIntoWords(task: string){
     return task.split(" ");
@@ -38,12 +41,17 @@ export class CreatedTaskComponent implements OnChanges{
   }
 
   ngOnChanges() {
-    this.taskService.getTaskList().subscribe((res:any)=>{
+    this.headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.userService.getToken()}`,
+    });
+    
+    this.taskService.getTaskList(this.headers).subscribe((res:any)=>{
       this.tasks = res.content;
     })
   }
 
   ngOnInit(){
   }
-  constructor(private taskService: TaskService){}
+  constructor(private taskService: TaskService, private userService: UserService){}
 }

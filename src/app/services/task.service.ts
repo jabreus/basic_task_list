@@ -9,13 +9,10 @@ import { UserService } from './user.service';
 })
 export class TaskService {
   base_url = "http://localhost:8080/v1/"
-  headers = new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${this.userService.getToken()}`,
-  });
+
   
-  public getTaskList(){
-    return this.http.get(this.base_url + "tasks", {headers:this.headers})
+  public getTaskList(headers: HttpHeaders){
+    return this.http.get(this.base_url + "tasks", {headers: headers})
       .pipe(
         catchError(err => {
           return throwError(err);
@@ -23,8 +20,8 @@ export class TaskService {
       );
   }
 
-  public addTask(content: any){
-    return this.http.post(this.base_url + "tasks", content, {headers: this.headers})
+  public addTask(content: any, headers: HttpHeaders){
+    return this.http.post(this.base_url + "tasks", content, {headers: headers})
       .pipe(
         catchError(err => {
           return throwError(err);

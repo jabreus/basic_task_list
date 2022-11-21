@@ -1,3 +1,4 @@
+import { HttpHeaders } from '@angular/common/http';
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
@@ -15,6 +16,7 @@ export class AddTaskComponent{
   new_task = "";
   flag = false;
   list_of_tasks: CreatedTaskResponseModel[] = [];
+  headers: any;
   @ViewChild('taskInput')
   taskInput!: ElementRef;
   accessToken = this.userService.getToken();
@@ -28,9 +30,9 @@ export class AddTaskComponent{
       this.flag = false;
     }else{
       const content = new CreateTaskModel(this.new_task);
-      this.taskService.addTask(content).subscribe((res)=>{
+      this.taskService.addTask(content, this.headers).subscribe((res)=>{
       });
-      this.taskService.getTaskList().subscribe((res:any)=>{
+      this.taskService.getTaskList(this.headers).subscribe((res:any)=>{
         this.list_of_tasks = res.content;
       })
     }
@@ -42,6 +44,10 @@ export class AddTaskComponent{
   }
   
   ngOnInit(){
+    this.headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.userService.getToken()}`,
+    });
     document.getElementById('first_task_input')!.onclick = () =>{
       this.flag = true;
       setTimeout(()=>{
