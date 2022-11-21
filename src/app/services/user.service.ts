@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieOptions, CookieService } from 'ngx-cookie-service';
 import { catchError, throwError } from 'rxjs';
+import { SignInModel } from '../models/sign-in-model';
+import { SigninResponseModel } from '../models/signinResponse';
 
 export const ACCESS_TOKEN: string = 'accessToken';
 
@@ -11,7 +13,7 @@ export const ACCESS_TOKEN: string = 'accessToken';
 
 
 export class UserService {
-  base_url = "http://localhost:8080/v1/"
+  base_url = "http://localhost:8080/v1/";
 
   constructor(private http: HttpClient, private cookieService: CookieService) { }
 
@@ -45,8 +47,10 @@ export class UserService {
     );
   }
 
-  public signinUser(body:any){
-    return this.http.post(this.base_url+"users/signin", body)
+  public signinUser(username: string, password: string){
+    const signinModel = new SignInModel(username, password);
+    console.log("JSON parseado ",JSON.stringify(signinModel));
+    return this.http.post<SigninResponseModel>(this.base_url+"users/signin", signinModel)
     .pipe(
       catchError(err => {
         if (err.status === 401) {

@@ -11,7 +11,7 @@ export class TaskService {
   base_url = "http://localhost:8080/v1/"
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${this.userService.getToken()}`,
+    'Authorization': `Bearer ${this.userService.getToken()}`,
   });
   
   public getTaskList(){
