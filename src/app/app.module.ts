@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { NzInputModule } from 'ng-zorro-antd/input';
 
 import { IconDefinition } from '@ant-design/icons-angular';
-import { PlusSquareOutline, UserOutline, ArrowsAltOutline, CalendarOutline, UnlockOutline, HighlightOutline, QuestionOutline, LinkOutline, MailOutline, LockOutline} from '@ant-design/icons-angular/icons';
+import { PlusSquareOutline, UserOutline, ArrowsAltOutline, CalendarOutline, UnlockOutline, HighlightOutline, QuestionOutline, LinkOutline, MailOutline, LockOutline, CloseOutline, PlusOutline} from '@ant-design/icons-angular/icons';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { AddTaskComponent } from './components/add-task/add-task.component';
@@ -22,9 +22,12 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { HttpClientModule } from '@angular/common/http';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { CookieService } from "ngx-cookie-service";
+import { AddTaskLessThan1230Component } from './components/add-task-less-than1230/add-task-less-than1230.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { NzResultModule } from 'ng-zorro-antd/result';
 
-
-const icons: IconDefinition[] = [PlusSquareOutline, UserOutline, ArrowsAltOutline, CalendarOutline, UnlockOutline, HighlightOutline, QuestionOutline, LinkOutline, MailOutline, LockOutline];
+const icons: IconDefinition[] = [PlusSquareOutline, UserOutline, ArrowsAltOutline, CalendarOutline, UnlockOutline, HighlightOutline, QuestionOutline, LinkOutline, MailOutline, LockOutline, CloseOutline, PlusOutline];
 
 @NgModule({
   declarations: [
@@ -32,7 +35,9 @@ const icons: IconDefinition[] = [PlusSquareOutline, UserOutline, ArrowsAltOutlin
     AddTaskComponent,
     CreatedTaskComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    AddTaskLessThan1230Component,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -48,9 +53,10 @@ const icons: IconDefinition[] = [PlusSquareOutline, UserOutline, ArrowsAltOutlin
     HttpClientModule,
     NzFormModule,
     BrowserAnimationsModule,
+    NzResultModule,
     NzIconModule.forRoot(icons)
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 
