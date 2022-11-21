@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { CookieOptions, CookieService } from 'ngx-cookie-service';
 import { catchError, throwError } from 'rxjs';
 import { SignInModel } from '../models/sign-in-model';
+import { SignUpModel } from '../models/sign-up-model';
 import { SigninResponseModel } from '../models/signinResponse';
 
 export const ACCESS_TOKEN: string = 'accessToken';
@@ -33,24 +34,23 @@ export class UserService {
     return this.cookieService.check(ACCESS_TOKEN);
   }
 
-  public signupUser(body:any){
- 
-    return this.http.post(this.base_url+"users/signup", body)
-    .pipe(
-      catchError(err => {
-        if (err.status === 409) {
-          return '0';
-        } else {
-          return throwError(err);
-        }
-      })
-    );
+  public signupUser(username: string, password: string){
+    const signupModel = new SignUpModel(username, password);
+    return this.http.post(this.base_url+"users/signup", signupModel, {responseType:'text'})
+      .pipe(
+        catchError(err => {
+          if (err.status === 409) {
+            return '0';
+          } else {
+            return throwError(err);
+          }
+        })      
+      )
   }
 
   public signinUser(username: string, password: string){
     const signinModel = new SignInModel(username, password);
-    console.log("JSON parseado ",JSON.stringify(signinModel));
-    return this.http.post<SigninResponseModel>(this.base_url+"users/signin", signinModel)
+    return this.http.post<SigninResponseModel>(this.base_url+"users/signin",signinModel)
     .pipe(
       catchError(err => {
         if (err.status === 401) {

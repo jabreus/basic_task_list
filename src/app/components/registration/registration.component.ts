@@ -13,12 +13,16 @@ export class RegistrationComponent {
 
   submitForm(): void {
     if (this.validateForm.valid) {
-      console.log('submit', this.validateForm.value);
-      this.userService.signupUser(this.validateForm.value).subscribe((res:any)=>{
-        if(res == "Registered"){
+      const username = this.validateForm.value.username;
+      const password = this.validateForm.value.password;
+      this.userService.signupUser(username, password).subscribe((res:any)=>{
+        if(res === "Registered"){
           console.log('user registered');
-          this.router.navigate(['/'])  
-        }else{
+          this.router.navigate(['/']);   
+        }else if(res === '0'){
+          window.alert("User name already in use")
+        }
+        else{
           alert("Registration Error");
         }
       });
@@ -33,7 +37,6 @@ export class RegistrationComponent {
   }
 
   updateConfirmValidator(): void {
-    /** wait for refresh value */
     Promise.resolve().then(() => this.validateForm.controls['checkPassword'].updateValueAndValidity());
   }
 

@@ -1,6 +1,6 @@
 <div *ngFor = "let task of tasks" nz-row style="margin-left: 16px; margin-top: 20px;">
     <label nz-checkbox style="margin-right: 5px;"></label>
-    <label class="word" *ngFor = "let word of convertTextIntoWords(task)">
+    <label class="word" *ngFor = "let word of convertTextIntoWords(task.content!)">
         <ng-container *ngIf="firstLetter(word) == '@'">
             <nz-tag class="tag" [nzColor]="'rgb(188,238,218)'" style="color:rgb(81,170,125)"><nz-avatar nzIcon="user" [nzSize]="17" style="background-color:#87d068; margin-bottom: 2px;"></nz-avatar> {{ removeFirstCharacter(word)  }}</nz-tag>
          </ng-container>

@@ -16,8 +16,6 @@ export class LoginComponent {
     if (this.validateForm.valid) {
       const username = this.validateForm.value.username;
       const password = this.validateForm.value.password;
-      console.log("username",username);
-      console.log("password",password);
       this.userService.signinUser(username, password).subscribe((res:any)=>{
         if(res==='0'){
           window.alert("No such user");

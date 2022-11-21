@@ -1,6 +1,8 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { CreateTaskModel } from 'src/app/models/create-task-model';
+import { CreatedTaskResponseModel } from 'src/app/models/created-task-response-model';
 import { TaskService } from 'src/app/services/task.service';
 
 @Component({
@@ -11,6 +13,7 @@ import { TaskService } from 'src/app/services/task.service';
 export class AddTaskComponent{
   new_task = "";
   flag = false;
+  list_of_tasks: CreatedTaskResponseModel[] = [];
   @ViewChild('taskInput')
   taskInput!: ElementRef;
   accessToken = this.cookieService.get("accessToken");
@@ -27,6 +30,9 @@ export class AddTaskComponent{
       this.taskService.addTask(content).subscribe((res)=>{
         console.log("response",res);
       });
+      this.taskService.getTaskList().subscribe((res:any)=>{
+        this.list_of_tasks = res.content;
+      })
     }
   }
   
@@ -37,8 +43,10 @@ export class AddTaskComponent{
         document.getElementById('task_input')!.focus();
       })
     }
+
+
   }
-  constructor(private taskService: TaskService, private cookieService: CookieService){}
+  constructor(private taskService: TaskService, private cookieService: CookieService, private router: Router){}
 }
 
 

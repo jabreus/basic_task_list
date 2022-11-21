@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { CreateTaskModel } from 'src/app/models/create-task-model';
+import { CreatedTaskResponseModel } from 'src/app/models/created-task-response-model';
 import { TaskService } from 'src/app/services/task.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -8,12 +10,8 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './created-task.component.html',
   styleUrls: ['./created-task.component.css']
 })
-export class CreatedTaskComponent{
-  tasks = ["#important Write to some@gmail.com and tell her @natash about https://staging.alldone.app", 
-            "#important Write to some@gmail.com and tell her @bryan about https://staging.alldone.app",
-            "#not-important Write to someother@gmail.com and tell her @will about https://sssss.alldone.app"
-          ]
-  // tasks = [];
+export class CreatedTaskComponent implements OnChanges{
+  @Input() tasks: CreatedTaskResponseModel[] = [];
   text: string [] = [];
 
   convertTextIntoWords(task: string){
@@ -41,10 +39,12 @@ export class CreatedTaskComponent{
       '(\\#[-a-z\\d_]*)?$','i');
     return pattern.test(word);
   }
-  ngOnInit(){
+
+  ngOnChanges() {
     this.taskService.getTaskList().subscribe((res:any)=>{
       this.tasks = res.content;
     })
   }
+
   constructor(private cookieService: CookieService, private taskService: TaskService){}
 }
