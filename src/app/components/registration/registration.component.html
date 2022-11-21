@@ -1,4 +1,5 @@
-<div nz-row style="margin-top: 180px;">
+<div class="tittle">Register</div>
+<div class="row-form" nz-row>
     <div nz-col nzSpan="12" nzOffset="7">
         <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
             <nz-form-item>
@@ -35,7 +36,9 @@
             <nz-form-item nz-row class="register-area">
             <nz-form-control [nzSpan]="14" [nzOffset]="6">
                 <button nz-button nzType="primary">Register</button>
+                <button (click) = "cancel()" class="cancel-button" nz-button nzType="default">Cancel</button>
             </nz-form-control>
+
             </nz-form-item>
         </form>
     </div>

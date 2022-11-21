@@ -1,9 +1,6 @@
 import { Component, Input, OnChanges } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
-import { CreateTaskModel } from 'src/app/models/create-task-model';
 import { CreatedTaskResponseModel } from 'src/app/models/created-task-response-model';
 import { TaskService } from 'src/app/services/task.service';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-created-task',
@@ -46,5 +43,7 @@ export class CreatedTaskComponent implements OnChanges{
     })
   }
 
-  constructor(private cookieService: CookieService, private taskService: TaskService){}
+  ngOnInit(){
+  }
+  constructor(private taskService: TaskService){}
 }

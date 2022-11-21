@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { NzInputModule } from 'ng-zorro-antd/input';
 
 import { IconDefinition } from '@ant-design/icons-angular';
-import { PlusSquareOutline, UserOutline, ArrowsAltOutline, CalendarOutline, UnlockOutline, HighlightOutline, QuestionOutline, LinkOutline, MailOutline, LockOutline, CloseOutline, PlusOutline} from '@ant-design/icons-angular/icons';
+import { PlusSquareOutline, UserOutline, ArrowsAltOutline, CalendarOutline, UnlockOutline, HighlightOutline, QuestionOutline, LinkOutline, MailOutline, LockOutline, CloseOutline, PlusOutline, LogoutOutline} from '@ant-design/icons-angular/icons';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { AddTaskComponent } from './components/add-task/add-task.component';
@@ -26,8 +26,9 @@ import { CookieService } from "ngx-cookie-service";
 import { AddTaskLessThan1230Component } from './components/add-task-less-than1230/add-task-less-than1230.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { NzResultModule } from 'ng-zorro-antd/result';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
 
-const icons: IconDefinition[] = [PlusSquareOutline, UserOutline, ArrowsAltOutline, CalendarOutline, UnlockOutline, HighlightOutline, QuestionOutline, LinkOutline, MailOutline, LockOutline, CloseOutline, PlusOutline];
+const icons: IconDefinition[] = [PlusSquareOutline, UserOutline, ArrowsAltOutline, CalendarOutline, UnlockOutline, HighlightOutline, QuestionOutline, LinkOutline, MailOutline, LockOutline, CloseOutline, PlusOutline, LogoutOutline];
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ const icons: IconDefinition[] = [PlusSquareOutline, UserOutline, ArrowsAltOutlin
     NzFormModule,
     BrowserAnimationsModule,
     NzResultModule,
+    NzLayoutModule,
     NzIconModule.forRoot(icons)
   ],
   providers: [CookieService],

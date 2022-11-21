@@ -4,6 +4,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { CreateTaskModel } from 'src/app/models/create-task-model';
 import { CreatedTaskResponseModel } from 'src/app/models/created-task-response-model';
 import { TaskService } from 'src/app/services/task.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-add-task',
@@ -16,7 +17,7 @@ export class AddTaskComponent{
   list_of_tasks: CreatedTaskResponseModel[] = [];
   @ViewChild('taskInput')
   taskInput!: ElementRef;
-  accessToken = this.cookieService.get("accessToken");
+  accessToken = this.userService.getToken();
   cancel(){
     this.new_task = ""
     this.flag = false;
@@ -28,12 +29,16 @@ export class AddTaskComponent{
     }else{
       const content = new CreateTaskModel(this.new_task);
       this.taskService.addTask(content).subscribe((res)=>{
-        console.log("response",res);
       });
       this.taskService.getTaskList().subscribe((res:any)=>{
         this.list_of_tasks = res.content;
       })
     }
+  }
+
+  logout(){
+    this.userService.cleanToken();
+    this.router.navigate(['/']);
   }
   
   ngOnInit(){
@@ -43,10 +48,10 @@ export class AddTaskComponent{
         document.getElementById('task_input')!.focus();
       })
     }
-
-
   }
-  constructor(private taskService: TaskService, private cookieService: CookieService, private router: Router){}
+  
+  constructor(private taskService: TaskService, private userService: UserService, private router: Router){
+  }
 }
 
 

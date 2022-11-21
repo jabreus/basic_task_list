@@ -49,6 +49,10 @@ export class RegistrationComponent {
     return {};
   };
 
+  cancel(){
+    this.router.navigate(['/']);
+  }
+
   constructor(private fb: UntypedFormBuilder, private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {

@@ -2,10 +2,15 @@
     font-size: 20px;
 }
 
-button{
+.bottom-buttons{
     margin: 5px;
 }
-button:hover{
+button:hover.bottom-buttons{
     color: black;
     border-color: black;
+}
+
+.logout {
+    color: white;
+    float: right;
 }

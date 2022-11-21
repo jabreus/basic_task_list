@@ -21,7 +21,6 @@ export class LoginComponent {
           window.alert("No such user");
         }else{
           this.userService.setToken(res.accessToken);
-          console.log("response from server", res);
           this.router.navigate(['/tasks']);
         }
       });

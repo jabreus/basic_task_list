@@ -1,5 +1,9 @@
+<nz-header>
+    <div class="logout">
+        <button (click)="logout()" nz-button nzType="primary" nzSize="large" nzShape="circle"><i nz-icon nzType="logout"></i></button>
+    </div>
+</nz-header>
 <div style="width: 98%; margin-left: 1%; margin-top: 25px;">
-
     <div nz-row [hidden] = "flag">
         <div>
             <span class = "icon" nz-icon nzType="plus-square" style="color: rgb(55, 125, 247); margin-top: 5px;" nzTheme="outline"></span>
@@ -8,7 +12,6 @@
             <input type="text" id="first_task_input" [(ngModel)]="new_task" nzBorderless nz-input placeholder="Tap to add new task"/>
         </div>
     </div> 
-
     <nz-input-group [hidden] = "!flag" [nzSuffix]="suffixTemplateInfo" [nzPrefix]="prefixTemplateUser" nzBorderless>
         <input type="text" id="task_input" [(ngModel)]="new_task" nz-input placeholder="Tap to add new task" style="height: 40px;"/>
     </nz-input-group>
@@ -21,23 +24,23 @@
 </div>
 <div nz-row [hidden] = "!flag" style="width: 98%; margin-left: 1%; background-color: white;  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);">
     <div nz-col nzSpan="2">
-        <button [disabled] = "flag && new_task == ''" nz-button nzType="default" style="background-color: rgb(235, 240, 245); border-color: rgb(235, 240, 245);"> <span class = "icon" nz-icon nzType="arrows-alt" nzTheme="outline"></span> Open</button>
+        <button class="bottom-buttons" [disabled] = "flag && new_task == ''" nz-button nzType="default" style="background-color: rgb(235, 240, 245); border-color: rgb(235, 240, 245);"> <span class = "icon" nz-icon nzType="arrows-alt" nzTheme="outline"></span> Open</button>
     </div>
 
     <div nz-col nzSpan="16">
         <div nz-row>
             <div>
-                <button [disabled] = "flag && new_task == ''" nz-button nzType="default"> <span class = "icon" nz-icon nzType="calendar" nzTheme="outline"></span> Today</button>
+                <button class="bottom-buttons" [disabled] = "flag && new_task == ''" nz-button nzType="default"> <span class = "icon" nz-icon nzType="calendar" nzTheme="outline"></span> Today</button>
             </div>
             <div>
-                <button [disabled] = "flag && new_task == ''" nz-button nzType="default"> <span class = "icon" nz-icon nzType="unlock" nzTheme="outline"></span> Public</button>
+                <button class="bottom-buttons" [disabled] = "flag && new_task == ''" nz-button nzType="default"> <span class = "icon" nz-icon nzType="unlock" nzTheme="outline"></span> Public</button>
             </div>
             <div>
-                <button [disabled] = "flag && new_task == ''" nz-button nzType="default"> <span class = "icon" nz-icon nzType="highlight" nzTheme="outline"></span> Highlight</button>
+                <button class="bottom-buttons" [disabled] = "flag && new_task == ''" nz-button nzType="default"> <span class = "icon" nz-icon nzType="highlight" nzTheme="outline"></span> Highlight</button>
             </div>
 
             <div>
-                <button [disabled] = "flag && new_task == ''" nz-button nzType="default"> <span class = "icon" nz-icon nzType="question" nzTheme="outline"></span> Estimation</button>
+                <button class="bottom-buttons" [disabled] = "flag && new_task == ''" nz-button nzType="default"> <span class = "icon" nz-icon nzType="question" nzTheme="outline"></span> Estimation</button>
             </div>
         </div>
     </div>
@@ -45,10 +48,10 @@
     <div nz-col nzSpan="6">
         <div nz-row style="float: right;">
             <div>
-                <button (click) = "cancel()" nz-button nzType="default" style="margin: 5px; background-color: rgb(235, 240, 245); border-color: rgb(235, 240, 245);"> Cancel</button>
+                <button class="bottom-buttons" (click) = "cancel()" nz-button nzType="default" style="margin: 5px; background-color: rgb(235, 240, 245); border-color: rgb(235, 240, 245);"> Cancel</button>
             </div>
             <div>
-                <button (click) = "addTask()" nz-button nzType="primary" style="margin: 5px; background-color: rgb(39, 83, 200); border-color: rgb(39, 83, 200);"> Add</button>
+                <button class="bottom-buttons" (click) = "addTask()" nz-button nzType="primary" style="margin: 5px; background-color: rgb(39, 83, 200); border-color: rgb(39, 83, 200);"> Add</button>
             </div>
         </div>
     </div>
