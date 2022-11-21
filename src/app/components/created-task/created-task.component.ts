@@ -8,11 +8,11 @@ import { TaskService } from 'src/app/services/task.service';
   styleUrls: ['./created-task.component.css']
 })
 export class CreatedTaskComponent{
-  // tasks = ["#important Write to some@gmail.com and tell her @natash about https://staging.alldone.app", 
-  //           "#important Write to some@gmail.com and tell her @bryan about https://staging.alldone.app",
-  //           "#not-important Write to someother@gmail.com and tell her @will about https://sssss.alldone.app"
-  //         ]
-  tasks = [];
+  tasks = ["#important Write to some@gmail.com and tell her @natash about https://staging.alldone.app", 
+            "#important Write to some@gmail.com and tell her @bryan about https://staging.alldone.app",
+            "#not-important Write to someother@gmail.com and tell her @will about https://sssss.alldone.app"
+          ]
+  // tasks = [];
   text: string [] = [];
   accessToken = this.cookieService.get("accessToken");
 
