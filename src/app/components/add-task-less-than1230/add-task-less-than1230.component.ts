@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { CreateTaskModel } from 'src/app/models/create-task-model';
 import { TaskService } from 'src/app/services/task.service';
 
 @Component({
@@ -22,8 +23,10 @@ export class AddTaskLessThan1230Component {
     if(!this.new_task){
       this.flag = false;
     }else{
-      
-      // this.taskService.addTask()
+      const content = new CreateTaskModel(this.new_task);
+      this.taskService.addTask(content, this.accessToken).subscribe((res)=>{
+        console.log("response",res);
+      });
     }
   }
   
