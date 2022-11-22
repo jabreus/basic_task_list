@@ -35,6 +35,7 @@ export class AddTaskComponent{
       this.taskService.getTaskList(this.headers).subscribe((res:any)=>{
         this.list_of_tasks = res.content;
       })
+      this.new_task = '';
     }
   }
 
